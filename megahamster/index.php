@@ -1,4 +1,17 @@
-<!DOCTYPE HTML>
+<?php
+require "vendor/autoload.php";
+
+
+$rooms[] = new \The360Dunker\megahamster\Living\Square("The Room", 1, 49.00, 80.00, 50.00, 50.00);
+$rooms[] = new \The360Dunker\megahamster\Living\Square("The Flat", 1, 149.00, 120.00, 80.00, 80.00, "Food jars");
+$rooms[] = new \The360Dunker\megahamster\Living\Octagon("The Pit", 2, 69.00, 20.00, "Hamster training gloves", "Hamster punching sack");
+$rooms[] = new \The360Dunker\megahamster\Living\Octagon("The Pit2", 2, 69.00, 20.00, "Hamster training gloves", "Hamster punching sack");
+if (isset($_GET['format']) && $_GET['format'] === 'json') {
+    header('Content-Type: application/json');
+    echo json_encode($rooms);
+} else {
+   ?>
+    <!DOCTYPE HTML>
 <head>
     <title>Megahamster</title>
     <link rel="stylesheet" href="">
@@ -11,18 +24,6 @@
     </style>
 </head>
 <body>
-<?php
-require("classes/Room.php");
-require("classes/Square.php");
-require("classes/Octagon.php");
-
-$rooms[] = new Square("The Room", 1, 49.00, array(""), 80.00, 50.00, 50.00);
-$rooms[] = new Square("The Flat", 1, 149.00, array("Food jars"), 120.00, 80.00, 80.00);
-$rooms[] = new Octagon("The Pit", 2, 69.00, array("Hamster training gloves", "Hamster punching sack"), 20.00);
-$rooms[] = new Octagon("The Pit2", 2, 69.00, ["Hamster training gloves", "Hamster punching sack"], 20.00);
-
-?>
-
 <div class="container">
     <h1>Megahamster</h1>
     <table style="">
@@ -32,42 +33,22 @@ $rooms[] = new Octagon("The Pit2", 2, 69.00, ["Hamster training gloves", "Hamste
             <th>Seitenlängen</th>
             <th>Fläche</th>
             <th>Zusatzausstattung</th>
-
+            </tr>
+            <?php
+foreach ($rooms as $room) {
+        $room->toList();
+    }
+    ?>
         </tr>
-        <?php
-        foreach ($rooms as $room) {
-
-            echo <<<ENDE
-        <tr>         
-            <td>
-                {$room->getBezeichnung()}
-            </td>
-            <td>
-                {$room->getPreis()}€
-            </td>
-             <td>
-              {$room->getGroessen()}
-            </td>
-            <td>
-                {$room->getGrundflaeche()}cm<sup>2</sup>
-            </td>
-            <td>
-ENDE;
-             $array = $room->getZusatzausstattung();
-            foreach ($array as $Ausstattung) {
-                echo $Ausstattung." ";
-            }
-                    echo <<<ENDE
-            </td>
-           
-        </tr>
-ENDE;
-
-
-        }
-        ?>
-    </table>
+  </table>
 </div>
 
 </body>
+
+<?php
+
+}
+
+
+
 
