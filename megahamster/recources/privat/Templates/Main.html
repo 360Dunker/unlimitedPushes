@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+</head>
+<body>
+<ul>
+<table>
+    <tr>
+                    <th>Produkt</th>
+                    <th>Preis</th>
+                    <th>Seitenlängen</th>
+                    <th>Fläche</th>
+                    <th>Zusatzausstattung</th>
+                    </tr>
+    <f:for each="{values}" as="room">
+        <tr>
+            <td>{room.bezeichnung}</td>
+            <td>{room.preis}</td>
+            <td>{room.groessen}</td>
+            <td>{room.grundflaeche}</td>
+            <td>{room.ausstattung}</td>
+            
+
+        </tr>
+    </f:for>
+</table>
+</ul>
+</body>
+</html>

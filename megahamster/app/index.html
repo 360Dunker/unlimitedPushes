@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="de" ng-app="Vorlage">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Vorlage</title>
+    <link rel="icon" href="favicon.ico">
+
+    <link rel="stylesheet" href="vendor/material-icons-3.0.1/material-icons.css">
+    <link rel="stylesheet" href="vendor/roboto/roboto.css">
+
+    <link rel="stylesheet" href="vendor/angular-material-1.1.19/angular-material.min.css">
+
+    <link rel="stylesheet" href="app.css">
+
+    <script src="vendor/default-passive-events.js"></script>
+    <script src="vendor/jquery-3.4.1/jquery.min.js"></script>
+    <script src="vendor/moment.js-2.24.0/moment.min.js"></script>
+    <script src="vendor/moment.js-2.24.0/locale/de.js" charset="UTF-8"></script>
+
+    <script src="vendor/angularjs-1.7.2/angular.min.js"></script>
+    <script src="vendor/angularjs-1.7.2/angular-resource.min.js"></script>
+    <script src="vendor/angularjs-1.7.2/angular-messages.min.js"></script>
+    <script src="vendor/angularjs-1.7.2/angular-sanitize.min.js"></script>
+    <script src="vendor/angularjs-1.7.2/angular-animate.min.js"></script>
+    <script src="vendor/angularjs-1.7.2/angular-aria.min.js"></script>
+    <script src="vendor/angularjs-1.7.2/i18n/angular-locale_de.js"></script>
+
+    <script src="vendor/angular-material-1.1.19/angular-material.min.js"></script>
+    <script src="vendor/angular-ui-router-1.0.22/angular-ui-router.min.js"></script>
+
+    <script src="app.js"></script>
+    <script src="models/seite.js"></script>
+
+
+    <meta charset="UTF-8">
+    <title>HTML Client requesting JSON Data</title>
+    <script type="text/javascript">
+        fetch('index.php?format=json').then((result) => {
+            return result.json();
+        })
+            .then((json) => {
+
+                console.log(json);
+
+
+                var html = "<table class=\"minimalistBlack\">\n" +
+                    "<tr>\n" +
+                    "            <th>Produkt</th>\n" +
+                    "            <th>Preis</th>\n" +
+                    "            <th>Seitenlängen</th>\n" +
+                    "            <th>Fläche</th>\n" + w
+                "            <th>Zusatzausstattung</th>\n" +
+                "            </tr>\n" +
+                "<tr>         \n";
+                json.forEach(e => {
+                    html += "<tr>" +
+                        "<td>" + e.bezeichnung + "</td>" +
+                        "<td>" + e.preis + "</td>" +
+                        "<td>" + e.goessen + "</td>" +
+                        "<td>" + e.flaeche + "</td>" +
+                        "<td>" + e.zusatzausstattung + "</td>" +
+                        "</tr>"
+                })
+                html += "</table>";
+                document.getElementById('content').innerHTML = html;
+
+
+            }).catch((err) => {
+            console.log(err);
+        });
+    </script>
+    <style>
+        table.minimalistBlack {
+            border: 3px solid #000000;
+            width: 100%;
+            text-align: left;
+            border-collapse: collapse;
+        }
+
+        table.minimalistBlack td, table.minimalistBlack th {
+            border: 1px solid #000000;
+            padding: 5px 4px;
+        }
+
+        table.minimalistBlack tbody td {
+            font-size: 13px;
+        }
+
+        table.minimalistBlack thead {
+            background: #CFCFCF;
+            background: -moz-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);
+            background: -webkit-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);
+            background: linear-gradient(to bottom, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);
+            border-bottom: 3px solid #000000;
+        }
+
+        table.minimalistBlack thead th {
+            font-size: 15px;
+            font-weight: bold;
+            color: #000000;
+            text-align: left;
+        }
+
+        table.minimalistBlack tfoot {
+            font-size: 14px;
+            font-weight: bold;
+            color: #000000;
+            border-top: 3px solid #000000;
+        }
+
+        table.minimalistBlack tfoot td {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body layout="column" ng-cloak>
+<div id="content">
+
+</div>
+
+
+</body>
+
+</html>

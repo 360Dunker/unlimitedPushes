@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+</head>
+<body>
+<ul>
+
+        <f:for each="{user}" as="userentry">
+            <li>
+            {userentry}
+            </li>
+        </f:for>
+
+</ul>
+</body>
+</html>
